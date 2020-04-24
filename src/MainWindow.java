@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class MainWindow {
-    //TODO Push to GitHub
     //TODO Create class for adding task to list
     //TODO Create class for showing list
     //TODO Use listener interface
