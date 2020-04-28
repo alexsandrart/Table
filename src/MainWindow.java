@@ -3,14 +3,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MainWindow implements NewTaskListener {
-    //TODO Check scanner.next() method
-    //TODO Create class for showing list
     //TODO Когда создаётся переменная scanner?
     private List<String> tasks = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
     private AddTaskManager addTaskManager = new AddTaskManager();
+    private ShowTasksManager showTasksManager = new ShowTasksManager();
 
     public static void main(String[] args) {
+        String s = "10";
         MainWindow mainWindow = new MainWindow();
         mainWindow.startMainWindow();
     }
@@ -29,7 +29,7 @@ public class MainWindow implements NewTaskListener {
                     addTaskManager.addTask(this);
                     return;
                 case 2:
-                    System.out.println("navigate to task list");
+                    showTasksManager.showTasks(tasks);
                     break;
                 case 0:
                     System.out.println("Good buy");

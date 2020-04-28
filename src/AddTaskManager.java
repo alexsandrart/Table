@@ -5,7 +5,7 @@ public class AddTaskManager {
 
     public void addTask(NewTaskListener listener) {
         System.out.println("Write down your task:");
-        String newTask = scanner.next();
+        String newTask = scanner.nextLine();
         listener.onNewTask(newTask);
     }
 }
