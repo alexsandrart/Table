@@ -2,17 +2,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MainWindow implements NewTaskListener {
+public class Application implements NewTaskListener {
     //TODO Когда создаётся переменная scanner?
-    private List<String> tasks = new ArrayList<>();
+    //TODO Реализовать репозиторий
+    //TODO Добавить сохранение в файл
+
+    private TasksRepository repository = new TasksRepository(new Cache());
     private Scanner scanner = new Scanner(System.in);
     private AddTaskManager addTaskManager = new AddTaskManager();
     private ShowTasksManager showTasksManager = new ShowTasksManager();
 
     public static void main(String[] args) {
         String s = "10";
-        MainWindow mainWindow = new MainWindow();
-        mainWindow.startMainWindow();
+        Application application = new Application();
+        application.startMainWindow();
     }
 
     private void startMainWindow() {
