@@ -9,30 +9,25 @@ public class Application implements NewTaskListener {
 
     private TasksRepository repository = new TasksRepository(new Cache());
     private Scanner scanner = new Scanner(System.in);
-    private AddTaskManager addTaskManager = new AddTaskManager();
+    private AddTaskManager addTaskManager = new AddTaskManager(this);
     private ShowTasksManager showTasksManager = new ShowTasksManager();
 
     public static void main(String[] args) {
-        String s = "10";
         Application application = new Application();
         application.startMainWindow();
     }
 
     private void startMainWindow() {
-        System.out.println("Make your choice ");
-        System.out.println("1 - add task");
-        System.out.println("2 - view list of tack");
-        System.out.println("0 - to exit application");
-
         while (true) {
+            printMainMenu();
             int choice = getUserChoice();
 
             switch (choice) {
                 case 1:
-                    addTaskManager.addTask(this);
+                    addTaskManager.addTask();
                     return;
                 case 2:
-                    showTasksManager.showTasks(tasks);
+                    showTasksManager.showTasks(repository.getTasks());
                     break;
                 case 0:
                     System.out.println("Good buy");
@@ -43,14 +38,20 @@ public class Application implements NewTaskListener {
         }
     }
 
+    private void printMainMenu() {
+        System.out.println("Make your choice ");
+        System.out.println("1 - add task");
+        System.out.println("2 - view list of tack");
+        System.out.println("0 - to exit application");
+    }
+
     private int getUserChoice() {
         return scanner.nextInt();
     }
 
     @Override
     public void onNewTask(String newTask) {
-        tasks.add(newTask);
-        tasks.forEach(System.out::println);
+        repository.addTask(newTask);
         startMainWindow();
     }
 }

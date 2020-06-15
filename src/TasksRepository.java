@@ -1,9 +1,9 @@
 import java.util.List;
 
-public class TasksRepository implements ITasksRepository{
+public class TasksRepository implements ITasksRepository {
     private Cache cache;
 
-    public TasksRepository(Cache cache){
+    public TasksRepository(Cache cache) {
         this.cache = cache;
     }
 
@@ -19,11 +19,11 @@ public class TasksRepository implements ITasksRepository{
 
     @Override
     public void addTask(String task) {
-
+        cache.addTask(task);
     }
 
     @Override
-    public void deleteTask(String taskId) {
-
+    public void deleteTask(String taskId) throws Exception {
+        throw new Exception("method is not implemented");
     }
 }
