@@ -2,6 +2,7 @@ import java.util.List;
 
 public class TasksRepository implements ITasksRepository {
     private Cache cache;
+    private IFileStorageManager fileStorageManager = new FileStorageManager();
 
     public TasksRepository(Cache cache) {
         this.cache = cache;
@@ -9,7 +10,13 @@ public class TasksRepository implements ITasksRepository {
 
     @Override
     public List<String> getTasks() {
-        return cache.getTasks();
+        if (cache.hasTasks()) {
+            return cache.getTasks();
+        } else {
+            List<String> tasks = fileStorageManager.getData();
+            cache.saveTasks(tasks);
+            return tasks;
+        }
     }
 
     @Override
@@ -25,5 +32,10 @@ public class TasksRepository implements ITasksRepository {
     @Override
     public void deleteTask(String taskId) throws Exception {
         throw new Exception("method is not implemented");
+    }
+
+    @Override
+    public void saveTasks() {
+        fileStorageManager.saveData(cache.getTasks());
     }
 }
