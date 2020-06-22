@@ -4,8 +4,11 @@ import java.util.Scanner;
 
 public class Application implements NewTaskListener {
     //TODO Когда создаётся переменная scanner?
-    //TODO Реализовать репозиторий
     //TODO Добавить сохранение в файл
+
+    //TODO Убрать ui элементы из Application
+    //TODO Добавить гуи
+    //TODO Добавить удаление задачи
 
     private TasksRepository repository = new TasksRepository(new Cache());
     private Scanner scanner = new Scanner(System.in);
