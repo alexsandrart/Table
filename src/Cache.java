@@ -11,4 +11,12 @@ public class Cache {
     public void addTask(String task){
         tasks.add(task);
     }
+
+    public boolean hasTasks() {
+        return tasks.size() > 0;
+    }
+
+    public void saveTasks(List<String> tasks){
+       this.tasks.addAll(tasks);
+    }
 }

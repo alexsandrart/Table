@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Application implements NewTaskListener {
     //TODO Когда создаётся переменная scanner?
-    //TODO Добавить сохранение в файл
 
     //TODO Убрать ui элементы из Application
     //TODO Добавить гуи
@@ -33,6 +32,7 @@ public class Application implements NewTaskListener {
                     showTasksManager.showTasks(repository.getTasks());
                     break;
                 case 0:
+                    repository.saveTasks();
                     System.out.println("Good buy");
                     return;
                 default:
