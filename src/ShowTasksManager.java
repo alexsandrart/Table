@@ -1,8 +1,12 @@
-import java.util.List;
-
 public class ShowTasksManager {
-    public void showTasks(List<String> tasks){
+    private ITasksRepository repository;
+
+    public ShowTasksManager(ITasksRepository repository) {
+        this.repository = repository;
+    }
+
+    public void showTasks(){
         System.out.println("This is your tasks");
-        tasks.forEach(System.out::println);
+        repository.getTasks().forEach(System.out::println);
     }
 }
