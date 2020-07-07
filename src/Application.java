@@ -2,17 +2,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Application implements NewTaskListener {
+public class Application {
     //TODO Когда создаётся переменная scanner?
 
     //TODO Убрать ui элементы из Application
     //TODO Добавить гуи
     //TODO Добавить удаление задачи
 
-    private TasksRepository repository = new TasksRepository(new Cache());
+    private ITasksRepository repository = new TasksRepository(new Cache());
     private Scanner scanner = new Scanner(System.in);
-    private AddTaskManager addTaskManager = new AddTaskManager(this);
-    private ShowTasksManager showTasksManager = new ShowTasksManager();
+    private AddTaskManager addTaskManager = new AddTaskManager(repository);
+    private ShowTasksManager showTasksManager = new ShowTasksManager(repository);
 
     public static void main(String[] args) {
         Application application = new Application();
@@ -27,9 +27,9 @@ public class Application implements NewTaskListener {
             switch (choice) {
                 case 1:
                     addTaskManager.addTask();
-                    return;
+                    break;
                 case 2:
-                    showTasksManager.showTasks(repository.getTasks());
+                    showTasksManager.showTasks();
                     break;
                 case 0:
                     repository.saveTasks();
@@ -50,11 +50,5 @@ public class Application implements NewTaskListener {
 
     private int getUserChoice() {
         return scanner.nextInt();
-    }
-
-    @Override
-    public void onNewTask(String newTask) {
-        repository.addTask(newTask);
-        startMainWindow();
     }
 }

@@ -2,15 +2,15 @@ import java.util.Scanner;
 
 public class AddTaskManager {
     private Scanner scanner = new Scanner(System.in);
-    private NewTaskListener listener;
+    private ITasksRepository repository;
 
-    public AddTaskManager(NewTaskListener listener) {
-        this.listener = listener;
+    public AddTaskManager(ITasksRepository iTasksRepository) {
+        repository = iTasksRepository;
     }
 
     public void addTask() {
         System.out.println("Write down your task:");
         String newTask = scanner.nextLine();
-        listener.onNewTask(newTask);
+        repository.addTask(newTask);
     }
 }
