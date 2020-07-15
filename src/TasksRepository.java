@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class TasksRepository implements ITasksRepository {
@@ -30,8 +31,16 @@ public class TasksRepository implements ITasksRepository {
     }
 
     @Override
-    public void deleteTask(String taskId) throws Exception {
-        throw new Exception("method is not implemented");
+    public void deleteTask(int taskId) {
+        List<String> tasks = cache.getTasks();
+        tasks.remove(taskId);
+        //TODO why this method is redundant?
+        cache.saveTasks(tasks);
+    }
+
+    @Override
+    public void deleteAllTasks() {
+        cache.saveTasks(new ArrayList<>());
     }
 
     @Override

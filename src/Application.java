@@ -31,6 +31,8 @@ public class Application {
                 case 2:
                     showTasksManager.showTasks();
                     break;
+                case 3:
+
                 case 0:
                     repository.saveTasks();
                     System.out.println("Good buy");
@@ -45,6 +47,8 @@ public class Application {
         System.out.println("Make your choice ");
         System.out.println("1 - add task");
         System.out.println("2 - view list of tack");
+        System.out.println("3 - delete task");
+        System.out.println("4 - delete all tasks");
         System.out.println("0 - to exit application");
     }
 
