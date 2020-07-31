@@ -8,13 +8,14 @@ public class Application {
     //TODO Убрать ui элементы из Application
     //TODO Добавить гуи
     //TODO Добавить удаление задачи
-
     private ITasksRepository repository = new TasksRepository(new Cache());
     private Scanner scanner = new Scanner(System.in);
     private AddTaskManager addTaskManager = new AddTaskManager(repository);
     private ShowTasksManager showTasksManager = new ShowTasksManager(repository);
 
     public static void main(String[] args) {
+        Gui gui = new Gui();
+        gui.setVisible(true);
         Application application = new Application();
         application.startMainWindow();
     }
