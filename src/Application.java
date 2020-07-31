@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Application {
+public class Application implements EventListener {
     //TODO Когда создаётся переменная scanner?
 
     //TODO Убрать ui элементы из Application
@@ -14,13 +14,13 @@ public class Application {
     private ShowTasksManager showTasksManager = new ShowTasksManager(repository);
 
     public static void main(String[] args) {
-        Gui gui = new Gui();
-        gui.setVisible(true);
         Application application = new Application();
         application.startMainWindow();
     }
 
     private void startMainWindow() {
+        Gui gui = new Gui(this);
+        gui.setVisible(true);
         while (true) {
             printMainMenu();
             int choice = getUserChoice();
@@ -51,5 +51,17 @@ public class Application {
 
     private int getUserChoice() {
         return scanner.nextInt();
+    }
+
+    @Override
+    public void onButtonClick(String event) {
+        if (event.equals("Create Task")){
+            openCreateTaskWindow();
+        }
+    }
+
+    private void openCreateTaskWindow() {
+        CreateTaskWindow createTaskWindow = new CreateTaskWindow(this);
+        createTaskWindow.setVisible(true);
     }
 }
