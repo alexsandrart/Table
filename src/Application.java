@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Application implements EventListener {
@@ -15,53 +13,41 @@ public class Application implements EventListener {
 
     public static void main(String[] args) {
         Application application = new Application();
-        application.startMainWindow();
+        application.startMainMenuWindow();
     }
 
-    private void startMainWindow() {
-        Gui gui = new Gui(this);
-        gui.setVisible(true);
-        while (true) {
-            printMainMenu();
-            int choice = getUserChoice();
-
-            switch (choice) {
-                case 1:
-                    addTaskManager.addTask();
-                    break;
-                case 2:
-                    showTasksManager.showTasks();
-                    break;
-                case 0:
-                    repository.saveTasks();
-                    System.out.println("Good buy");
-                    return;
-                default:
-                    System.out.println("You entered wrong number. Try again");
-            }
-        }
-    }
-
-    private void printMainMenu() {
-        System.out.println("Make your choice ");
-        System.out.println("1 - add task");
-        System.out.println("2 - view list of tack");
-        System.out.println("0 - to exit application");
-    }
-
-    private int getUserChoice() {
-        return scanner.nextInt();
+    private void startMainMenuWindow() {
+        MainMenuWindow mainMenuWindow = new MainMenuWindow(this);
+        mainMenuWindow.setVisible(true);
     }
 
     @Override
-    public void onButtonClick(String event) {
-        if (event.equals("Create Task")){
+    public void onButtonClick(ButtonClickEvent event) {
+        switch (event) {
+            case OPEN_ADD_TASK_WINDOW:
+                openCreateTaskWindow();
+                break;
+            case OPEN_VIEW_TASK_WINDOW:
+                openViewTaskWindow();
+                break;
+            case BACK_TO_MAIN_MENU:
+                startMainMenuWindow();
+                break;
+        }
+
+        if (event.equals("Create Task")) {
             openCreateTaskWindow();
         }
+    }
+
+    private void openViewTaskWindow() {
+        ViewTaskWindow viewTaskWindow = new ViewTaskWindow(this);
+        viewTaskWindow.setVisible(true);
     }
 
     private void openCreateTaskWindow() {
         CreateTaskWindow createTaskWindow = new CreateTaskWindow(this);
         createTaskWindow.setVisible(true);
     }
+
 }

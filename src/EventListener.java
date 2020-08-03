@@ -1,3 +1,3 @@
  interface EventListener {
-    void onButtonClick (String event);
+    void onButtonClick (ButtonClickEvent event);
 }
