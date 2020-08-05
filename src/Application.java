@@ -34,10 +34,6 @@ public class Application implements EventListener {
                 startMainMenuWindow();
                 break;
         }
-
-        if (event.equals("Create Task")) {
-            openCreateTaskWindow();
-        }
     }
 
     private void openViewTaskWindow() {
@@ -46,8 +42,8 @@ public class Application implements EventListener {
     }
 
     private void openCreateTaskWindow() {
-        CreateTaskWindow createTaskWindow = new CreateTaskWindow(this);
-        createTaskWindow.setVisible(true);
+        AddTaskWindow addTaskWindow = new AddTaskWindow(this, repository);
+        addTaskWindow.setVisible(true);
     }
 
 }
