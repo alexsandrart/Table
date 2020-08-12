@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.event.WindowEvent;
 import java.util.Scanner;
 
 public class Application implements EventListener {
@@ -19,6 +21,16 @@ public class Application implements EventListener {
     private void startMainMenuWindow() {
         MainMenuWindow mainMenuWindow = new MainMenuWindow(this);
         mainMenuWindow.setVisible(true);
+        setWindowListener(mainMenuWindow);
+    }
+
+    private void setWindowListener(JFrame window) {
+        window.addWindowListener(new WindowClosingListener() {
+            @Override
+            public void windowClosing(WindowEvent windowEvent) {
+                repository.saveTasks();
+            }
+        });
     }
 
     @Override
@@ -39,11 +51,13 @@ public class Application implements EventListener {
     private void openViewTaskWindow() {
         ViewTaskWindow viewTaskWindow = new ViewTaskWindow(this);
         viewTaskWindow.setVisible(true);
+        setWindowListener(viewTaskWindow);
     }
 
     private void openCreateTaskWindow() {
         AddTaskWindow addTaskWindow = new AddTaskWindow(this, repository);
         addTaskWindow.setVisible(true);
+        setWindowListener(addTaskWindow);
     }
 
 }
