@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ViewTaskWindow extends JFrame {
     private EventListener commandListener;
@@ -15,12 +13,7 @@ public class ViewTaskWindow extends JFrame {
         this.commandListener = listener;
 
         btnBack.setAlignmentY(Component.CENTER_ALIGNMENT);
-        btnBack.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                commandListener.onButtonClick(ButtonClickEvent.BACK_TO_MAIN_MENU);
-            }
-        });
+        btnBack.addActionListener(actionEvent -> commandListener.onButtonClick(ButtonClickEvent.BACK_TO_MAIN_MENU));
 
         Container container = this.getContentPane();
 
